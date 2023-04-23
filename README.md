@@ -51,6 +51,11 @@ The application leverages OpenAI's GPT model for generating human-like responses
 1. To cancel an ongoing AI request, press the "Stop thinking" button.
 1. To repeat the last AI-generated response, press the "Repeat" button.
 
+## Screenshots
+
+<img alt="iOS Screenshot" src="Screenshots/ios.png"  width="200px" style="margin-top: 7px;margin-right: 20px; margin-bottom: 10px;"/>
+<img alt="macOS Screenshot" src="Screenshots/macos.png" width="400px" style="margin-right: 20px; margin-bottom: 10px;">
+
 ## Structure
 
 The project follows the MVVM architecture and consists of the following main components:

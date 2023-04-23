@@ -51,7 +51,7 @@ struct ContentView: View {
             TextField("Recognized text", text: $viewModel.recognizedText, axis: .vertical)
                 .multilineTextAlignment(.leading)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .lineLimit(5, reservesSpace: true)
+                .lineLimit(5)
                 .focused($focusedField, equals: .input)
                 .frame(maxWidth: .infinity)
             
