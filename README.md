@@ -53,8 +53,10 @@ The application leverages OpenAI's GPT model for generating human-like responses
 
 ## Screenshots
 
-<img alt="iOS Screenshot" src="Screenshots/ios.png"  width="200px" style="margin-top: 7px;margin-right: 20px; margin-bottom: 10px;"/>
-<img alt="macOS Screenshot" src="Screenshots/macos.png" width="400px" style="margin-right: 20px; margin-bottom: 10px;">
+<div style="display: flex; justify-content: space-around;">
+   <img alt="iOS Screenshot" src="Screenshots/ios.png"  width="30%" style="margin-top: 7px;margin-right: 5%; margin-bottom: 10px;"/>
+   <img alt="macOS Screenshot" src="Screenshots/macos.png" width="60%" style="margin-bottom: 10px;">
+</div>
 
 ## Structure
 
