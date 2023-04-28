@@ -185,7 +185,7 @@ class SpeechRecognitionViewModel: ObservableObject {
                 chatGPTTask.cancel()
                 self.chatGPTTask = nil
             }
-            self.chatGPTTask = self.chatGPTService.sendMessage(messages: self.chatProcessor.messages) { [weak self] result
+            self.chatGPTTask = self.chatGPTService.sendMessage(messages: &self.chatProcessor.messages) { [weak self] result
                 in guard let self = self else { return }
                 
                 chatProcessor.unsetGptThinking()

@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		241A116329EBB8A700585503 /* SenderName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241A116229EBB8A700585503 /* SenderName.swift */; };
+		2449893F29FBD4510073EC9A /* GPT3Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2449893E29FBD4510073EC9A /* GPT3Settings.swift */; };
+		2449894129FBD4B90073EC9A /* GPT3Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2449894029FBD4B90073EC9A /* GPT3Tokenizer.swift */; };
+		2449894429FBE48F0073EC9A /* encoder.json in Resources */ = {isa = PBXBuildFile; fileRef = 2449894229FBE48F0073EC9A /* encoder.json */; };
+		2449894529FBE48F0073EC9A /* vocab.bpe in Resources */ = {isa = PBXBuildFile; fileRef = 2449894329FBE48F0073EC9A /* vocab.bpe */; };
+		2449894829FBED980073EC9A /* GPT3TokenizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2449894729FBED980073EC9A /* GPT3TokenizerTests.swift */; };
 		247937E329E1DC7700210FC1 /* TalkToAIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247937E229E1DC7700210FC1 /* TalkToAIApp.swift */; };
 		247937E529E1DC7700210FC1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247937E429E1DC7700210FC1 /* ContentView.swift */; };
 		247937E729E1DC7A00210FC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 247937E629E1DC7A00210FC1 /* Assets.xcassets */; };
@@ -34,17 +39,15 @@
 			remoteGlobalIDString = 247937DE29E1DC7700210FC1;
 			remoteInfo = TalkToAI;
 		};
-		247937FB29E1DC7B00210FC1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 247937D729E1DC7700210FC1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 247937DE29E1DC7700210FC1;
-			remoteInfo = TalkToAI;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		241A116229EBB8A700585503 /* SenderName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderName.swift; sourceTree = "<group>"; };
+		2449893E29FBD4510073EC9A /* GPT3Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPT3Settings.swift; sourceTree = "<group>"; };
+		2449894029FBD4B90073EC9A /* GPT3Tokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPT3Tokenizer.swift; sourceTree = "<group>"; };
+		2449894229FBE48F0073EC9A /* encoder.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = encoder.json; sourceTree = "<group>"; };
+		2449894329FBE48F0073EC9A /* vocab.bpe */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vocab.bpe; sourceTree = "<group>"; };
+		2449894729FBED980073EC9A /* GPT3TokenizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPT3TokenizerTests.swift; sourceTree = "<group>"; };
 		247937DF29E1DC7700210FC1 /* TalkToAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TalkToAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		247937E229E1DC7700210FC1 /* TalkToAIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkToAIApp.swift; sourceTree = "<group>"; };
 		247937E429E1DC7700210FC1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,7 +56,6 @@
 		247937EA29E1DC7A00210FC1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		247937F029E1DC7B00210FC1 /* TalkToAITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TalkToAITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		247937F429E1DC7B00210FC1 /* ChatProcessorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatProcessorTests.swift; sourceTree = "<group>"; };
-		247937FA29E1DC7B00210FC1 /* TalkToAIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TalkToAIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2479380D29E1DD3800210FC1 /* ChatProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatProcessor.swift; sourceTree = "<group>"; };
 		2479380E29E1DD3800210FC1 /* SpeechRecognitionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionViewModel.swift; sourceTree = "<group>"; };
 		2479380F29E1DD3800210FC1 /* SpeechSynthesizerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizerManager.swift; sourceTree = "<group>"; };
@@ -83,16 +85,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		247937F729E1DC7B00210FC1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2449894629FBEADE0073EC9A /* GPT3Tokenizer */ = {
+			isa = PBXGroup;
+			children = (
+				2449894229FBE48F0073EC9A /* encoder.json */,
+				2449894329FBE48F0073EC9A /* vocab.bpe */,
+				2449893E29FBD4510073EC9A /* GPT3Settings.swift */,
+				2449894029FBD4B90073EC9A /* GPT3Tokenizer.swift */,
+			);
+			path = GPT3Tokenizer;
+			sourceTree = "<group>";
+		};
 		247937D629E1DC7700210FC1 = {
 			isa = PBXGroup;
 			children = (
@@ -108,7 +114,6 @@
 			children = (
 				247937DF29E1DC7700210FC1 /* TalkToAI.app */,
 				247937F029E1DC7B00210FC1 /* TalkToAITests.xctest */,
-				247937FA29E1DC7B00210FC1 /* TalkToAIUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -142,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				247937F429E1DC7B00210FC1 /* ChatProcessorTests.swift */,
+				2449894729FBED980073EC9A /* GPT3TokenizerTests.swift */,
 			);
 			path = TalkToAITests;
 			sourceTree = "<group>";
@@ -161,6 +167,7 @@
 		24FAFF4C29F52D7A006FB7B1 /* GPT */ = {
 			isa = PBXGroup;
 			children = (
+				2449894629FBEADE0073EC9A /* GPT3Tokenizer */,
 				2479381129E1DD3800210FC1 /* GptService.swift */,
 				2479381229E1DD3800210FC1 /* GPT3ErrorResponse.swift */,
 				2479381029E1DD3800210FC1 /* GPT3Response.swift */,
@@ -215,24 +222,6 @@
 			productReference = 247937F029E1DC7B00210FC1 /* TalkToAITests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		247937F929E1DC7B00210FC1 /* TalkToAIUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2479380A29E1DC7B00210FC1 /* Build configuration list for PBXNativeTarget "TalkToAIUITests" */;
-			buildPhases = (
-				247937F629E1DC7B00210FC1 /* Sources */,
-				247937F729E1DC7B00210FC1 /* Frameworks */,
-				247937F829E1DC7B00210FC1 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				247937FC29E1DC7B00210FC1 /* PBXTargetDependency */,
-			);
-			name = TalkToAIUITests;
-			productName = TalkToAIUITests;
-			productReference = 247937FA29E1DC7B00210FC1 /* TalkToAIUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -247,10 +236,6 @@
 						CreatedOnToolsVersion = 14.3;
 					};
 					247937EF29E1DC7B00210FC1 = {
-						CreatedOnToolsVersion = 14.3;
-						TestTargetID = 247937DE29E1DC7700210FC1;
-					};
-					247937F929E1DC7B00210FC1 = {
 						CreatedOnToolsVersion = 14.3;
 						TestTargetID = 247937DE29E1DC7700210FC1;
 					};
@@ -271,7 +256,6 @@
 			targets = (
 				247937DE29E1DC7700210FC1 /* TalkToAI */,
 				247937EF29E1DC7B00210FC1 /* TalkToAITests */,
-				247937F929E1DC7B00210FC1 /* TalkToAIUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -282,18 +266,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				247937EB29E1DC7A00210FC1 /* Preview Assets.xcassets in Resources */,
+				2449894529FBE48F0073EC9A /* vocab.bpe in Resources */,
 				247937E729E1DC7A00210FC1 /* Assets.xcassets in Resources */,
+				2449894429FBE48F0073EC9A /* encoder.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		247937EE29E1DC7B00210FC1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		247937F829E1DC7B00210FC1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -314,6 +293,8 @@
 				2491881729E1F7EB00958C8E /* Scenario.swift in Sources */,
 				2479381A29E1DD3800210FC1 /* Message.swift in Sources */,
 				2479381729E1DD3800210FC1 /* GPT3Response.swift in Sources */,
+				2449894129FBD4B90073EC9A /* GPT3Tokenizer.swift in Sources */,
+				2449893F29FBD4510073EC9A /* GPT3Settings.swift in Sources */,
 				2479381429E1DD3800210FC1 /* ChatProcessor.swift in Sources */,
 				249FBF9829E6F0910000C26E /* MainMenu.swift in Sources */,
 				249FBF9A29E96B1C0000C26E /* Language.swift in Sources */,
@@ -329,13 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				247937F529E1DC7B00210FC1 /* ChatProcessorTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		247937F629E1DC7B00210FC1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				2449894829FBED980073EC9A /* GPT3TokenizerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,11 +321,6 @@
 			isa = PBXTargetDependency;
 			target = 247937DE29E1DC7700210FC1 /* TalkToAI */;
 			targetProxy = 247937F129E1DC7B00210FC1 /* PBXContainerItemProxy */;
-		};
-		247937FC29E1DC7B00210FC1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 247937DE29E1DC7700210FC1 /* TalkToAI */;
-			targetProxy = 247937FB29E1DC7B00210FC1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -586,48 +556,6 @@
 			};
 			name = Release;
 		};
-		2479380B29E1DC7B00210FC1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				MACOSX_DEPLOYMENT_TARGET = 13.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Uzser.TalkToAIUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = TalkToAI;
-			};
-			name = Debug;
-		};
-		2479380C29E1DC7B00210FC1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				MACOSX_DEPLOYMENT_TARGET = 13.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Uzser.TalkToAIUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = TalkToAI;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -654,15 +582,6 @@
 			buildConfigurations = (
 				2479380829E1DC7B00210FC1 /* Debug */,
 				2479380929E1DC7B00210FC1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2479380A29E1DC7B00210FC1 /* Build configuration list for PBXNativeTarget "TalkToAIUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2479380B29E1DC7B00210FC1 /* Debug */,
-				2479380C29E1DC7B00210FC1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
