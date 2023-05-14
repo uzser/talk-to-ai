@@ -43,7 +43,7 @@ The application leverages OpenAI's GPT model for generating human-like responses
 ## Usage
 
 1. Launch the application and choose a language (English or Russian) from the settings screen.
-1. Press the "Listen" button and start speaking. The application will recognize your speech and display it as text. You can edit the recognized text in the text field if it's not accurate before sending it to the AI model.
+1. Press the "Say" button and start speaking. The application will recognize your speech and display it as text. You can edit the recognized text in the text field if it's not accurate before sending it to the AI model.
 1. You can also use custom scenarios by pasting a prompt at this moment into the text field. This allows you to have more context-specific conversations with the AI.
 1. To send the text, press the "Stop" button.
 1. After sending the message, the AI will process your input and generate a response. The response will be displayed as text and spoken using text-to-speech synthesis.

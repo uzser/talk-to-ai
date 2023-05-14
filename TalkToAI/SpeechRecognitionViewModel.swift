@@ -6,7 +6,7 @@ import AVKit
 
 class SpeechRecognitionViewModel: ObservableObject {
     @Published var recognizedText: String = ""
-    @Published var buttonText: String = "Listen"
+    @Published var buttonText: String = "Say"
     @Published var isRecognizingInProcess: Bool = false
     @Published var isScenarioStarting: Bool = false
     @Published var showSettings: Bool = false
@@ -70,7 +70,7 @@ class SpeechRecognitionViewModel: ObservableObject {
             
             DispatchQueue.main.async {
                 self.isRecognizingInProcess = false
-                self.buttonText = "Listen"
+                self.buttonText = "Say"
             }
 
             if(recognizedText != recognitionPlaceholderText){
@@ -174,7 +174,7 @@ class SpeechRecognitionViewModel: ObservableObject {
                 
                 DispatchQueue.main.async {
                     self.isRecognizingInProcess = false
-                    self.buttonText = "Listen"
+                    self.buttonText = "Say"
                 }
             }
         }
