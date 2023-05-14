@@ -99,7 +99,8 @@ class GptService: GptServiceProtocol {
         
         let requestBody: [String: Any] = [
             "model": model,
-            "messages": messagesFormatted
+            "messages": messagesFormatted,
+            "temperature": 0.7
         ]
         
         do {

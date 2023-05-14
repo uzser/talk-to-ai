@@ -79,6 +79,7 @@ struct ContentView: View {
             }) {
                 Text(speechSynthesizerManager.isSpeaking ? "Stop speaking" : "Repeat")
             }
+            .disabled(viewModel.isRecognizingInProcess)
             .padding(5)
             
             HStack {

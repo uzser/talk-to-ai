@@ -2,10 +2,12 @@ import SwiftUI
 import Combine
 import Speech
 import AVFoundation
+import AVKit
 
 class SpeechRecognitionViewModel: ObservableObject {
     @Published var recognizedText: String = ""
     @Published var buttonText: String = "Listen"
+    @Published var isRecognizingInProcess: Bool = false
     @Published var isScenarioStarting: Bool = false
     @Published var showSettings: Bool = false
     
@@ -58,7 +60,16 @@ class SpeechRecognitionViewModel: ObservableObject {
             audioEngine.stop()
             recognitionRequest?.endAudio()
             
+            let audioSession = AVAudioSession.sharedInstance()
+            do {
+                try audioSession.setCategory(.playback)
+                try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+            } catch {
+                print("Failed to set audio session category.")
+            }
+            
             DispatchQueue.main.async {
+                self.isRecognizingInProcess = false
                 self.buttonText = "Listen"
             }
 
@@ -83,6 +94,7 @@ class SpeechRecognitionViewModel: ObservableObject {
                 try? startSpeechRecognition(language: language)
                 
                 DispatchQueue.main.async {
+                    self.isRecognizingInProcess = true
                     self.buttonText = "Stop"
                 }
             } else if authorizationStatus == .notDetermined {
@@ -91,6 +103,7 @@ class SpeechRecognitionViewModel: ObservableObject {
                         DispatchQueue.main.async {
                             if status == .authorized {
                                 try? self.startSpeechRecognition(language: language)
+                                self.isRecognizingInProcess = true
                                 self.buttonText = "Stop"
                             } else {
                                 self.recognizedText = "Speech recognition not authorized."
@@ -103,6 +116,7 @@ class SpeechRecognitionViewModel: ObservableObject {
                         DispatchQueue.main.async {
                             if status == .authorized {
                                 try? self.startSpeechRecognition(language: language)
+                                self.isRecognizingInProcess = true
                                 self.buttonText = "Stop"
                             } else {
                                 self.recognizedText = "Speech recognition not authorized."
@@ -119,6 +133,15 @@ class SpeechRecognitionViewModel: ObservableObject {
     }
 
     private func startSpeechRecognition(language: Language) throws {
+        
+        let audioSession = AVAudioSession.sharedInstance()
+            do {
+                try audioSession.setCategory(.playAndRecord, mode: .default, options: .defaultToSpeaker)
+                try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+            } catch {
+                print("Failed to set audio session category.")
+            }
+        
         if let recognitionTask = recognitionTask {
             recognitionTask.cancel()
             self.recognitionTask = nil
@@ -150,6 +173,7 @@ class SpeechRecognitionViewModel: ObservableObject {
                 self.recognitionTask = nil
                 
                 DispatchQueue.main.async {
+                    self.isRecognizingInProcess = false
                     self.buttonText = "Listen"
                 }
             }
@@ -174,6 +198,8 @@ class SpeechRecognitionViewModel: ObservableObject {
             return "en_US"
         case .russian:
             return "ru_RU"
+        case .hebrew:
+            return "he_IL"
         }
     }
     

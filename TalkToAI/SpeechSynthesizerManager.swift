@@ -19,7 +19,7 @@ class SpeechSynthesizerManager: NSObject, AVSpeechSynthesizerDelegate, Observabl
     }
     
     func getVoice(language: Language) -> AVSpeechSynthesisVoice? {
-        
+
         let langCode: String
         switch language {
         case .english:
@@ -29,6 +29,8 @@ class SpeechSynthesizerManager: NSObject, AVSpeechSynthesizerDelegate, Observabl
             }
         case .russian:
             langCode = "ru-RU"
+        case .hebrew:
+            langCode = "he-IL"
         }
         return AVSpeechSynthesisVoice(language: langCode)
     }
