@@ -60,6 +60,7 @@ class SpeechRecognitionViewModel: ObservableObject {
             audioEngine.stop()
             recognitionRequest?.endAudio()
             
+#if os(iOS)
             let audioSession = AVAudioSession.sharedInstance()
             do {
                 try audioSession.setCategory(.playback)
@@ -67,18 +68,19 @@ class SpeechRecognitionViewModel: ObservableObject {
             } catch {
                 print("Failed to set audio session category.")
             }
+#endif
             
             DispatchQueue.main.async {
                 self.isRecognizingInProcess = false
                 self.buttonText = "Say"
             }
-
+            
             if(recognizedText != recognitionPlaceholderText){
                 chatProcessor.addHumanMessage(content: recognizedText){
                     self.sendMessagesToChatGPT(language: language)
                 }
             }
-
+            
             // Reset recognition state
             let inputNode = audioEngine.inputNode
             inputNode.removeTap(onBus: 0)
@@ -131,16 +133,18 @@ class SpeechRecognitionViewModel: ObservableObject {
             }
         }
     }
-
+    
     private func startSpeechRecognition(language: Language) throws {
         
+#if os(iOS)
         let audioSession = AVAudioSession.sharedInstance()
-            do {
-                try audioSession.setCategory(.playAndRecord, mode: .default, options: .defaultToSpeaker)
-                try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
-            } catch {
-                print("Failed to set audio session category.")
-            }
+        do {
+            try audioSession.setCategory(.playAndRecord, mode: .default, options: .defaultToSpeaker)
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+        } catch {
+            print("Failed to set audio session category.")
+        }
+#endif
         
         if let recognitionTask = recognitionTask {
             recognitionTask.cancel()
@@ -148,13 +152,13 @@ class SpeechRecognitionViewModel: ObservableObject {
         }
         
         speechSynthesizerManager.stopSpeaking()
-
+        
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-
+        
         let inputNode = audioEngine.inputNode
-
+        
         guard let recognitionRequest = recognitionRequest else { fatalError("Unable to create a SFSpeechAudioBufferRecognitionRequest object") }
-
+        
         recognitionRequest.shouldReportPartialResults = true
         
         let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: getLanguageCode(language: language)))!
@@ -178,12 +182,12 @@ class SpeechRecognitionViewModel: ObservableObject {
                 }
             }
         }
-
+        
         let recordingFormat = inputNode.outputFormat(forBus: 0)
         inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
             self.recognitionRequest?.append(buffer)
         }
-
+        
         audioEngine.prepare()
         try audioEngine.start()
         
